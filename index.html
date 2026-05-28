@@ -5,413 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmarTechLabAI | AI • Embedded • Software Solutions</title>
     <style>
-        /* 1. Global Variables & Advanced Contrast Palette */
+        /* Core Global Design System Setup */
         :root {
-            --bg-main: #080c14;
-            --bg-surface: #0f1624;
-            --bg-card: #172033;
-            --border-color: #23304a;
+            --bg-main: #070b12;        
+            --bg-surface: #0e1726;     
+            --bg-card: #16223b;        
+            --border-color: #1e2d4a;   
             --text-primary: #ffffff;
-            --text-secondary: #a0aec0; /* Darkened slightly for better WCAG AA readability */
-            --accent-cyan: #00f5ff;
-            --accent-glow: rgba(0, 245, 255, 0.15);
+            --text-secondary: #94a3b8; 
+            --accent-cyan: #00e5ff;    
+            --accent-glow: rgba(0, 229, 255, 0.25);
             --accent-green: #10b981;
         }
-
-        /* 2. Document Setup & Fluid Typography */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            scroll-behavior: smooth;
-        }
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            line-height: 1.625;
-            -webkit-font-smoothing: antialiased;
-        }
-        a {
-            color: var(--accent-cyan);
-            text-decoration: none;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        a:hover {
-            color: #ffffff;
-        }
-
-        /* 3. Header & Sticky Blurred Menu Navigation */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-main); color: var(--text-primary); line-height: 1.625; -webkit-font-smoothing: antialiased; }
+        a { color: var(--accent-cyan); text-decoration: none; transition: all 0.25s ease; }
+        
+        /* Navigation Header Block */
         header {
-            background-color: rgba(8, 12, 20, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 1.25rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: rgba(7, 11, 18, 0.75);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 1.25rem 5%; position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;
         }
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .logo span {
-            color: var(--accent-cyan);
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 24px;
-        }
-        nav ul li a {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        nav ul li a:hover {
-            color: var(--accent-cyan);
-        }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent-cyan); text-shadow: 0 0 15px var(--accent-glow); }
+        nav ul { display: flex; list-style: none; gap: 24px; }
+        nav ul li a { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent-cyan); }
 
-        /* Responsive Mobile Navigation Trigger */
         @media (max-width: 768px) {
-            nav { display: none; } /* Kept clean and simple for MVP single page */
+            header { flex-direction: column; gap: 12px; padding: 1rem; }
+            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+            nav ul { gap: 16px; justify-content: flex-start; width: max-content; padding: 0 4px; }
         }
 
-        /* 4. Asymmetric Section Blocks */
-        .section-block {
-            padding: 100px 6%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-block.alt-bg {
-            background-color: var(--bg-surface);
-            max-width: 100%;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .section-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 48px;
-            letter-spacing: -0.5px;
-        }
-        .section-title span {
-            color: var(--accent-cyan);
-        }
+        /* Layout Architecture Utilities */
+        .section-block { padding: 100px 6%; max-width: 1200px; margin: 0 auto; }
+        .section-block.alt-bg { background-color: var(--bg-surface); max-width: 100%; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.25rem; font-weight: 700; text-align: center; margin-bottom: 48px; letter-spacing: -0.5px; }
+        .section-title span { color: var(--accent-cyan); }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
 
-        /* 5. Fluid Responsive Hero Area */
-        .hero {
-            padding: 140px 6% 100px 6%;
-            text-align: center;
-            background: radial-gradient(circle at top, rgba(0,245,255,0.05) 0%, transparent 70%);
-        }
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.25rem); /* Prevents squishing on mobile devices */
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-        }
-        .hero h1 span {
-            color: var(--accent-cyan);
-        }
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--text-secondary);
-            max-width: 760px;
-            margin: 0 auto 36px auto;
-        }
-        .btn-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn-primary {
-            background-color: var(--accent-cyan);
-            color: var(--bg-main);
-            padding: 14px 28px;
-            font-weight: 600;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0, 245, 255, 0.2);
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background-color: #ffffff;
-        }
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-primary);
-            padding: 14px 28px;
-            font-weight: 600;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-        .btn-secondary:hover {
-            background-color: rgba(255,255,255,0.05);
-            border-color: var(--text-secondary);
-        }
+        /* Interactive Element Styling */
+        .hero { padding: 160px 6% 120px 6%; text-align: center; background: radial-gradient(circle at top, rgba(0,229,255,0.09) 0%, transparent 65%); }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin-bottom: 24px; }
+        .hero h1 span { color: var(--accent-cyan); text-shadow: 0 0 25px rgba(0,229,255,0.2); }
+        .hero p { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-secondary); max-width: 720px; margin: 0 auto 40px auto; }
+        .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background-color: var(--accent-cyan); color: #05080f; padding: 14px 32px; font-weight: 600; border-radius: 6px; box-shadow: 0 4px 20px rgba(0, 229, 255, 0.25); display: inline-block; }
+        .btn-primary:hover { transform: translateY(-2px); background-color: #ffffff; box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3); }
+        .btn-secondary { background-color: transparent; color: var(--text-primary); padding: 14px 32px; font-weight: 600; border-radius: 6px; border: 1px solid var(--border-color); background-color: rgba(22, 34, 59, 0.2); display: inline-block; }
+        .btn-secondary:hover { background-color: rgba(22, 34, 59, 0.5); border-color: var(--text-secondary); transform: translateY(-1px); }
 
-        /* 6. Grid Systems */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
-        }
-        .service-card {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 32px;
-            transition: border-color 0.3s ease, transform 0.3s ease;
-        }
-        .service-card:hover {
-            border-color: var(--accent-cyan);
-            transform: translateY(-4px);
-        }
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--accent-cyan);
-            padding-left: 12px;
-        }
-        .service-sub-list {
-            list-style: none;
-        }
-        .service-sub-list li {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .service-sub-list li::before {
-            content: "✓";
-            color: var(--accent-cyan);
-            font-weight: bold;
-        }
+        .service-card { background-color: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 32px; transition: all 0.3s ease; }
+        .service-card:hover { border-color: var(--accent-cyan); transform: translateY(-4px); }
+        .service-card h3 { font-size: 1.3rem; margin-bottom: 20px; border-left: 3px solid var(--accent-cyan); padding-left: 12px; }
+        .service-sub-list { list-style: none; }
+        .service-sub-list li { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .service-sub-list li::before { content: "✓"; color: var(--accent-cyan); font-weight: bold; }
 
-        /* 7. Enhanced Technologies Section Layout */
-        .tech-matrix {
-            background-color: var(--bg-main);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 36px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 32px;
-        }
-        .tech-col h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .tech-tag {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-family: monospace;
-            color: #e2e8f0;
-        }
+        .tech-matrix { background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px; padding: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; }
+        .tech-col h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); margin-bottom: 16px; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-tag { background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 4px; font-size: 0.85rem; font-family: monospace; color: #f1f5f9; font-weight: 500; }
 
-        /* 8. Portfolio Section Layout */
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        .project-item {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 20px;
-            transition: border-color 0.2s ease;
-        }
-        .project-item:hover {
-            border-color: rgba(0, 245, 255, 0.4);
-        }
-        @media (min-width: 768px) {
-            .project-item { flex-direction: row; align-items: center; }
-        }
-        .project-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
-        .project-info p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            max-width: 800px;
-        }
+        .project-list { display: flex; flex-direction: column; gap: 24px; }
+        .project-item { background-color: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; transition: all 0.25s ease; }
+        .project-item:hover { border-color: var(--accent-cyan); }
+        @media (min-width: 768px) { .project-item { flex-direction: row; align-items: center; } }
+        .project-info h3 { font-size: 1.4rem; margin-bottom: 8px; }
+        .project-info p { color: var(--text-secondary); font-size: 0.95rem; max-width: 800px; }
 
-        /* 9. Core Value Pillars */
-        .pillar-card {
-            background-color: var(--bg-main);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 32px;
-            position: relative;
-        }
-        .pillar-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--accent-cyan);
-        }
-        .pillar-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
+        .pillar-card { background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px; padding: 32px; }
+        .pillar-card h3 { font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: var(--accent-cyan); }
+        .pillar-card p { color: var(--text-secondary); font-size: 0.95rem; }
 
-        /* 10. Process Section Pipeline */
-        .process-pipeline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-        }
-        .process-step {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 32px 24px;
-            text-align: center;
-            position: relative;
-        }
-        .step-num {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: rgba(0, 245, 255, 0.08);
-            position: absolute;
-            top: 5px;
-            right: 15px;
-        }
-        .process-step h3 {
-            font-size: 1.15rem;
-            margin-bottom: 12px;
-        }
-        .process-step p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
+        .process-pipeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+        .process-step { background-color: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 32px 24px; text-align: center; position: relative; }
+        .step-num { font-size: 2.5rem; font-weight: 900; color: rgba(0, 229, 255, 0.06); position: absolute; top: 5px; right: 15px; }
+        .process-step h3 { font-size: 1.15rem; margin-bottom: 12px; }
+        .process-step p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        /* 11. Tiered Pricing Layout Matrices */
-        .pricing-tier {
-            background-color: var(--bg-main);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 40px 32px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 320px;
-        }
-        .pricing-tier.featured {
-            background-color: var(--bg-surface);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 4px 25px rgba(0, 245, 255, 0.1);
-        }
-        .pricing-tier h3 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-        }
-        .price-val {
-            font-size: 2.75rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin: 20px 0;
-        }
-
-        /* 12. Contact Elements Layer */
-        .contact-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto 48px auto;
-        }
-        .contact-btn {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            padding: 16px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .contact-btn:hover {
-            border-color: var(--accent-cyan);
-            background-color: var(--bg-card);
-            transform: translateY(-2px);
-        }
-
-        /* 13. System Footer Layout */
-        footer {
-            background-color: var(--bg-main);
-            border-top: 1px solid var(--border-color);
-            padding: 60px 5% 40px 5%;
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-            align-items: center;
-            justify-content: space-between;
-        }
-        @media (min-width: 768px) {
-            .footer-content { flex-direction: row; }
-        }
-        .footer-logo h3 {
-            font-size: 1.3rem;
-            margin-bottom: 4px;
-        }
-        .footer-logo p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        .footer-links {
-            display: flex;
-            gap: 24px;
-            font-size: 0.9rem;
-        }
-        .footer-links a {
-            color: var(--text-secondary);
-        }
-        .footer-links a:hover {
-            color: var(--accent-cyan);
-        }
+        footer { background-color: var(--bg-main); border-top: 1px solid var(--border-color); padding: 60px 5% 40px 5%; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; align-items: center; justify-content: space-between; }
+        @media (min-width: 768px) { .footer-content { flex-direction: row; } }
+        .footer-logo h3 { font-size: 1.3rem; margin-bottom: 4px; }
+        .footer-logo p { font-size: 0.9rem; color: var(--text-secondary); }
+        .footer-links { display: flex; gap: 24px; font-size: 0.9rem; }
+        .footer-links a { color: var(--text-secondary); }
+        .footer-links a:hover { color: var(--accent-cyan); }
     </style>
 </head>
 <body>
@@ -420,11 +104,11 @@
         <div class="logo">SmarTechLab<span>AI</span></div>
         <nav>
             <ul>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#why-us">Why Us</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="blog.html">Tech Blog</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact Engineering</a></li>
             </ul>
         </nav>
     </header>
@@ -433,7 +117,7 @@
         <h1>AI • Embedded • Software • <span>Engineering Solutions</span></h1>
         <p>Building intelligent software, hardware firmware, industrial automation, and custom technical integrations developed for operational efficiency.</p>
         <div class="btn-group">
-            <a href="#contact" class="btn-primary">Start a Project</a>
+            <a href="contact.html" class="btn-primary">Start a Project</a>
             <a href="#services" class="btn-secondary">Explore Services</a>
         </div>
     </section>
@@ -442,40 +126,42 @@
         <div class="section-inner">
             <h2 class="section-title">Our <span>Services</span></h2>
             <div class="grid-container">
+                <div class="service-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                    <h3>Automotive Sensor & Production</h3>
+                    <ul class="service-sub-list">
+                        <li>Advanced Sensor Array Design</li>
+                        <li>Automotive Signal Conditioning</li>
+                        <li>Hardware-in-the-Loop Testing</li>
+                        <li>DFM & Production Line Scaling</li>
+                        <li>Regulatory Compliance Alignment</li>
+                    </ul>
+                </div>
                 <div class="service-card">
                     <h3>Embedded & Firmware</h3>
                     <ul class="service-sub-list">
                         <li>STM32, TI, NXP MCUs Development</li>
-                        <li>Embedded Architecture</li>
-                        <li>RTOS Development</li>
-                        <li>Driver Development</li>
-                        <li>Communication Protocols</li>
+                        <li>Embedded Architecture Layers</li>
+                        <li>Deterministic RTOS Development</li>
+                        <li>Low-level Driver Adaptations</li>
+                        <li>Industrial CAN / Telemetry Protocols</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>Software Engineering</h3>
                     <ul class="service-sub-list">
-                        <li>Web Applications</li>
-                        <li>Backend APIs</li>
-                        <li>Automation Tools</li>
-                        <li>System Integration</li>
+                        <li>Responsive Web Interfaces</li>
+                        <li>High-Throughput Backend APIs</li>
+                        <li>Asynchronous Automation Tools</li>
+                        <li>System Interop Architecture</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <h3>AI Solutions</h3>
                     <ul class="service-sub-list">
-                        <li>AI Automation</li>
-                        <li>AI Workflow Tools</li>
-                        <li>Custom AI Assistants</li>
-                        <li>Productivity Solutions</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Consulting</h3>
-                    <ul class="service-sub-list">
-                        <li>Technical Guidance</li>
-                        <li>Architecture Review</li>
-                        <li>Engineering Mentoring</li>
+                        <li>Workflow Optimization Pipelines</li>
+                        <li>Custom Retrieval-Augmented Tools</li>
+                        <li>Domain-Specific AI Assistants</li>
+                        <li>Enterprise Automation Vectors</li>
                     </ul>
                 </div>
             </div>
@@ -486,28 +172,29 @@
         <h2 class="section-title">Core <span>Technologies</span></h2>
         <div class="tech-matrix">
             <div class="tech-col">
-                <h4>Embedded</h4>
+                <h4>Embedded & Hardware</h4>
                 <div class="tech-tags">
-                    <span class="tech-tag">C</span>
-                    <span class="tech-tag">C++</span>
-                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">C / C++</span>
+                    <span class="tech-tag">Bare-Metal</span>
                     <span class="tech-tag">RTOS</span>
+                    <span class="tech-tag">Signal Conditioning</span>
                 </div>
             </div>
             <div class="tech-col">
-                <h4>Software</h4>
+                <h4>Software Architecture</h4>
                 <div class="tech-tags">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">REST / RESTful APIs</span>
+                    <span class="tech-tag">Git Versioning</span>
                 </div>
             </div>
             <div class="tech-col">
                 <h4>Artificial Intelligence</h4>
                 <div class="tech-tags">
-                    <span class="tech-tag">OpenAI APIs</span>
-                    <span class="tech-tag">Automation</span>
-                    <span class="tech-tag">Integrations</span>
+                    <span class="tech-tag">OpenAI Frameworks</span>
+                    <span class="tech-tag">Data Parsing Tools</span>
+                    <span class="tech-tag">Cloud Integration</span>
                 </div>
             </div>
         </div>
@@ -520,30 +207,23 @@
                 <div class="project-item">
                     <div class="project-info">
                         <h3>Embedded Control System Architecture</h3>
-                        <p>High-efficiency telemetry controller layout implementing microsecond-precision hardware timing synchronization loops.</p>
+                        <p>High-efficiency telemetry controller layout implementing microsecond-precision hardware timing loops, achieving a 35% reduction in computational latency overhead.</p>
                     </div>
                     <span class="tech-tag">Bare-Metal C</span>
                 </div>
                 <div class="project-item">
                     <div class="project-info">
                         <h3>Multi-Peripheral Driver Implementation</h3>
-                        <p>Custom software drivers isolating core timing operations, handling continuous asynchronous telemetry communication profiles.</p>
+                        <p>Custom peripheral software isolation drivers handling continuous asynchronous telemetry communication profile pipelines with zero operational packet drop.</p>
                     </div>
                     <span class="tech-tag">STM32 / Hardware Drivers</span>
                 </div>
                 <div class="project-item">
                     <div class="project-info">
                         <h3>Autonomous AI Automation Workflow</h3>
-                        <p>Enterprise parsing script utilizing dynamic cloud machine learning models to extract data vectors directly into system structures.</p>
+                        <p>Enterprise processing configuration script leveraging cloud machine learning structures to process data vectors instantly into legacy databases.</p>
                     </div>
                     <span class="tech-tag">Python / OpenAI</span>
-                </div>
-                <div class="project-item">
-                    <div class="project-info">
-                        <h3>Real-Time Technical Dashboard</h3>
-                        <p>Responsive interface showing unified log frameworks alongside low-latency machine diagnostics telemetry graphs.</p>
-                    </div>
-                    <span class="tech-tag">Node.js API</span>
                 </div>
             </div>
         </div>
@@ -577,68 +257,24 @@
             <div class="process-pipeline">
                 <div class="process-step">
                     <div class="step-num">01</div>
-                    <h3>Requirement Discussion</h3>
-                    <p>Evaluating design specifications and hardware infrastructure requirements.</p>
+                    <h3>Requirement Analysis</h3>
+                    <p>Evaluating precise engineering design specifications and target runtime configurations.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-num">02</div>
-                    <h3>Proposal</h3>
-                    <p>Clear architectural documentation detailing specific scope adjustments and milestones.</p>
+                    <h3>Architectural Blueprint</h3>
+                    <p>Clear documentation outlining specific scope adjustments, interface footprints, and milestones.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-num">03</div>
-                    <h3>Development</h3>
-                    <p>Writing clean, efficient firmware structures or cloud integration applications.</p>
+                    <h3>Execution Loop</h3>
+                    <p>Writing highly performance-optimized code structures, hardware firmware routines, or cloud integrations.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-num">04</div>
-                    <h3>Delivery</h3>
-                    <p>Comprehensive system verification followed by operational handoff into staging.</p>
+                    <h3>System Verification</h3>
+                    <p>Comprehensive validation loops followed by structured system handoff and staging steps.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-block" id="pricing">
-        <h2 class="section-title">Project <span>Pricing</span></h2>
-        <div class="grid-container">
-            <div class="pricing-tier">
-                <div>
-                    <h3>Starter</h3>
-                    <div class="price-val">₹5k+</div>
-                </div>
-                <p style="color: var(--text-secondary); font-size: 0.95rem;">Basic optimization scripts, minor interface changes, or standalone driver adjustments.</p>
-            </div>
-            <div class="pricing-tier featured">
-                <div>
-                    <h3>Professional</h3>
-                    <div class="price-val">₹20k+</div>
-                </div>
-                <p style="color: var(--text-secondary); font-size: 0.95rem;">Complete custom automation applications, full firmware integrations, or custom internal AI assistants.</p>
-            </div>
-            <div class="pricing-tier">
-                <div>
-                    <h3>Custom</h3>
-                    <div class="price-val">Contact</div>
-                </div>
-                <p style="color: var(--text-secondary); font-size: 0.95rem;">Complex cross-platform software systems or structural hardware-in-the-loop deployments.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-block alt-bg" id="contact">
-        <div class="section-inner">
-            <h2 class="section-title">Start <span>Your Project</span></h2>
-            
-            <div class="contact-methods">
-                <a href="mailto:engineering@smartechlabai.com" class="contact-btn">✉ Email Inquiry</a>
-                <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" class="contact-btn">💬 WhatsApp Chat</a>
-                <a href="https://github.com/YOUR_USERNAME" target="_blank" class="contact-btn">🛠 GitHub Profile</a>
-                <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" class="contact-btn">💼 LinkedIn Connect</a>
-            </div>
-            
-            <div style="text-align: center;">
-                <a href="mailto:engineering@smartechlabai.com" class="btn-primary" style="padding: 16px 48px; font-size: 1.1rem;">Start Project Engagement</a>
             </div>
         </div>
     </section>
@@ -651,12 +287,12 @@
             </div>
             <div class="footer-links">
                 <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
             </div>
         </div>
         <div style="text-align: center; font-size: 0.8rem; color: var(--text-secondary); margin-top: 32px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-            &copy; 2026 SmarTechLabAI. Verified and running securely via GitHub Pages.
+            &copy; 2026 SmarTechLabAI. Running securely via GitHub Pages.
         </div>
     </footer>
 
