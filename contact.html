@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiate Engineering Engagement | SmarTechLabAI</title>
+    <style>
+        :root {
+            --bg-main: #070b12; --bg-surface: #0e1726; --bg-card: #16223b; --border-color: #1e2d4a;
+            --text-primary: #ffffff; --text-secondary: #94a3b8; --accent-cyan: #00e5ff; --accent-glow: rgba(0, 229, 255, 0.25);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-primary); line-height: 1.625; -webkit-font-smoothing: antialiased; }
+        
+        header {
+            background-color: rgba(7, 11, 18, 0.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 1.25rem 5%; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent-cyan); text-shadow: 0 0 15px var(--accent-glow); }
+        nav ul { display: flex; list-style: none; gap: 24px; }
+        nav ul li a { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; text-decoration: none; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent-cyan); }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 12px; padding: 1rem; }
+            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+            nav ul { gap: 16px; justify-content: flex-start; width: max-content; padding: 0 4px; }
+        }
+
+        .section-block { padding: 60px 6%; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.25rem; font-weight: 700; text-align: center; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .section-title span { color: var(--accent-cyan); }
+        .section-subtitle { text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 48px auto; font-size: 1.05rem; }
+
+        /* QA & PO FIX: Interactive Compilation Form Wrapper */
+        .lead-form-container { max-width: 600px; margin: 0 auto 40px auto; background: var(--bg-surface); border: 1px solid var(--border-color); padding: 32px; border-radius: 8px; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 12px; border-radius: 4px; color: var(--text-primary); font-size: 0.95rem; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--accent-cyan); }
+
+        .btn-primary { background-color: var(--accent-cyan); color: #05080f; padding: 16px 48px; font-weight: 600; border-radius: 6px; text-decoration: none; display: inline-block; transition: all 0.25s ease; width: 100%; border: none; cursor: pointer; font-size: 1rem; }
+        .btn-primary:hover { background-color: #ffffff; }
+
+        .contact-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 900px; margin: 40px auto 0 auto; }
+        .contact-btn { background-color: var(--bg-surface); border: 1px solid var(--border-color); padding: 16px; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 600; color: var(--text-primary); text-decoration: none; transition: all 0.25s ease; font-size: 0.9rem; }
+        .contact-btn:hover { border-color: var(--accent-cyan); background-color: var(--bg-card); transform: translateY(-2px); }
+        footer { background-color: var(--bg-main); border-top: 1px solid var(--border-color); padding: 40px 5%; text-align: center; font-size: 0.8rem; color: var(--text-secondary); margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">SmarTechLab<span>AI</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="blog.html">Tech Blog</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html" class="active">Contact Engineering</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-block">
+        <h2 class="section-title">Open <span>Project Engagement</span></h2>
+        <p class="section-subtitle">Define your development tracks below. Our automated compiler will build your architecture package for analysis.</p>
+        
+        <div class="lead-form-container">
+            <form id="projectIntakeForm" onsubmit="handleFormSubmission(event)">
+                <div class="form-group">
+                    <label for="trackSelect">Project Track Selection</label>
+                    <select id="trackSelect" required>
+                        <option value="Automotive Sensor Development & Production">Automotive Sensor Development & Production</option>
+                        <option value="Embedded Firmware Architecture Layers">Embedded Firmware Architecture Layers</option>
+                        <option value="Custom AI Workflow & Data Automation">Custom AI Workflow & Data Automation</option>
+                        <option value="Full-Stack Engineering Infrastructure">Full-Stack Engineering Infrastructure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="scopeDetails">Brief Scope & System Goals</label>
+                    <textarea id="scopeDetails" rows="4" placeholder="Detail hardware platform requirements, computational bounds, timing parameters, or targeted milestones..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">
+                    Construct & Submit Architecture Briefing
+                </button>
+            </form>
+        </div>
+
+        <div class="contact-methods">
+            <a href="mailto:smartechailab@gmail.com" class="contact-btn">✉ Direct Core Email</a>
+            <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" class="contact-btn">💬 WhatsApp Wire</a>
+            <a href="https://github.com/YOUR_USERNAME" target="_blank" class="contact-btn">🛠 View GitHub Hub</a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 SmarTechLabAI. Data pathways running securely via verified protocols.
+    </footer>
+
+    <!-- QA & PRODUCT OWNER COMPILER HOOK SCRIPT -->
+    <script>
+    function handleFormSubmission(event) {
+        event.preventDefault();
+        const selectedTrack = document.getElementById('trackSelect').value;
+        const scopeContent = document.getElementById('scopeDetails').value;
+        
+        // Formulates parameters cleanly to eliminate user client platform packet drop
+        const emailSubject = encodeURIComponent(`SmarTechLabAI Engineering Intake: ${selectedTrack}`);
+        const emailBody = encodeURIComponent(`SmarTechLabAI Structural Statement of Work Briefing:\n\nTarget Development Track:\n-> ${selectedTrack}\n\nSystem Requirements & Core Architecture Boundary Details:\n${scopeContent}\n\n---\nSent via SmarTechLabAI Secure Intake Portal.`);
+        
+        // Execute clean system link redirect
+        window.location.href = `mailto:smartechailab@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    }
+    </script>
+</body>
+</html>
